@@ -8,26 +8,26 @@
 
 --1
 select i.name, o.order_date
-from items2 i
-left join orders3 o on i.item_id = o.item_id
+from orders3 o
+left join items2 i on i.item_id = o.item_id
 where o.order_date = '2020-06-01'
 
 --2
 select i.name, i.price
-from items2 i
-left join orders3 o on i.item_id = o.item_id
+from orders3 o
+left join items2 i on i.item_id = o.item_id  !! and date! 
 where i.price >= 3
 
 --3
 select sum(i.price)
-from items2 i
-left join orders3 o on i.item_id = o.item_id
+from orders3 o
+left join items2 i on i.item_id = o.item_id   !!date! 
 where o.user_id = 1
 
 --4 
 select sum(i.price)
-from items2 i
-left join orders3 o on i.item_id = o.item_id
+from orders3 o
+left join items2 i on i.item_id = o.item_id   !!date! 
 where o.order_date <= '2020-05-01'
 
 
@@ -36,8 +36,8 @@ select
 	   date_trunc('quarter', o.order_date) as quarter,
 	   sum(i.price) as total_spent,
        avg(i.price) as avg_order_price
-from items2 i
-left join orders3 o on i.item_id = o.item_id
+from orders3 o
+left join items2 i on i.item_id = o.item_id   !!!date! 
 group by quarter 
 order by quarter  
 
